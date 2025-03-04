@@ -1,4 +1,5 @@
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = (props) => {
 
@@ -17,6 +18,8 @@ const PhotoListItem = (props) => {
             <div className="photo-list__user-location">
               {props.photo.location.city}, {props.photo.location.country}
             </div>
+
+            <PhotoFavButton />
       
       </div>
       
