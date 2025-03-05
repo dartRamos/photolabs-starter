@@ -2,12 +2,12 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 import { useState } from "react";
 
-const PhotoListItem = ({ photo }) => {
+const PhotoListItem = ({ photo, favorited, toggleFavorite }) => {
 
-  const [selected, setSelected] = useState(false);
+  const isFavorited = favorited.includes(photo.id)
 
   const handleClick = () => {
-    setSelected(!selected);
+    toggleFavorite(photo.id);
   }
 
   return (
@@ -26,7 +26,7 @@ const PhotoListItem = ({ photo }) => {
             {photo.location.city}, {photo.location.country}
           </div>
 
-          <PhotoFavButton selected={selected} onClick={handleClick}/>
+          <PhotoFavButton selected={isFavorited} onClick={handleClick}/>
       
       </div>
       
