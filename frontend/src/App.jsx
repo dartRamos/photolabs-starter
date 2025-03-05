@@ -1,29 +1,9 @@
-import PhotoListItem from './components/PhotoListItem';
-import PhotoFavButton from './components/PhotoFavButton';
+import PhotoList from './components/PhotoList';
 import './App.scss';
 
-const sampleDataForPhotoListItem = {
-  id: "1",
-  location: {
-    city: "Montreal",
-    country: "Canada",
-  },
-  imageSource: `/Image-1-Regular.jpeg`,
-  username: "Joe Example",
-  profile: `/profile-1.jpg`,
-};
-
-const App = () => {
-  const photos = new Array(3).fill(sampleDataForPhotoListItem)
-
-  return (
-    <div className="App">
-      {photos.map((photo, index) => (
-        <PhotoListItem key={index} photo={photo}>
-        </PhotoListItem>
-      ))}
-    </div>
-  )
-}
-
-export default App;
+const App = () => (
+  <div className="App">
+    {/* { Array.from(Array(3)).map((_, index) => <PhotoListItem key={index}/>) } */}
+   <PhotoList/>
+  </div>
+)
