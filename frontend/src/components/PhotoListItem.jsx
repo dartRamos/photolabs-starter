@@ -2,7 +2,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 import { useState } from "react";
 
-const PhotoListItem = (props) => {
+const PhotoListItem = ({ photo }) => {
 
   const [selected, setSelected] = useState(false);
 
@@ -12,21 +12,21 @@ const PhotoListItem = (props) => {
 
   return (
     <div className="photo-list__item">
-      <img className="photo-list__image"src={props.photo.urls.regular} alt={`Photo ${props.photo.id}`} />
+      <img className="photo-list__image"src={photo.urls.regular} alt={`Photo ${photo.id}`} />
         
       <div className="photo-list__user-details">
         
-        <img className="photo-list__user-profile"src={props.photo.user.profile} alt={`Photo of ${props.photo.user.name}`} />
+        <img className="photo-list__user-profile"src={photo.user.profile} alt={`Photo of ${photo.user.name}`} />
             
           <div className="photo-list__user-info">
-            {props.photo.user.name}
+            {photo.user.name}
           </div>
             
-            <div className="photo-list__user-location">
-              {props.photo.location.city}, {props.photo.location.country}
-            </div>
+          <div className="photo-list__user-location">
+            {photo.location.city}, {photo.location.country}
+          </div>
 
-            <PhotoFavButton selected={selected} onClick={handleClick}/>
+          <PhotoFavButton selected={selected} onClick={handleClick}/>
       
       </div>
       
