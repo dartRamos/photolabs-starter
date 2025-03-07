@@ -11,6 +11,8 @@ const App = () => {
   
   const [ isModalOpen, setIsModalOpen ] = useState(false); // State for modal visibility
 
+  const [ selectedPhoto, setSelecetedPhoto ] = useState(null); // State for selected photo
+
   // Toggle favorite status of a photo
   const toggleFavorite = (photoId) => {
     if (favorited.includes(photoId)) {
@@ -20,14 +22,16 @@ const App = () => {
     }
   }
 
-  // Open the modal
-  const openModal = () => {
+  // Open the modal & set selected photo
+  const openModal = (photo) => {
+    setSelecetedPhoto(photo)
     setIsModalOpen(true);
   };
 
   // Close the modal
   const closeModal = () => {
     setIsModalOpen(false)
+    setSelecetedPhoto(null)
   };
 
   return (
@@ -38,11 +42,11 @@ const App = () => {
         favorited={favorited}
         toggleFavorite={toggleFavorite}
         openModal={openModal}
-        closeModal={closeModal}
       />
       {/* Render the modal if isModalOpen is true */}
       {isModalOpen && <PhotoDetailsModal 
       closeModal={closeModal}
+      photo={selectedPhoto}
       />}
     </div>
   );
