@@ -8,6 +8,7 @@ import { useState } from 'react';
 const App = () => {
 
   const [ favorited, setFavorited ] = useState([]); // State for favorited photos
+  
   const [ isModalOpen, setIsModalOpen ] = useState(false); // State for modal visibility
 
   // Toggle favorite status of a photo
@@ -24,6 +25,11 @@ const App = () => {
     setIsModalOpen(true);
   };
 
+  // Close the modal
+  const closeModal = () => {
+    setIsModalOpen(false)
+  };
+
   return (
     <div className="App">
       <HomeRoute 
@@ -32,9 +38,12 @@ const App = () => {
         favorited={favorited}
         toggleFavorite={toggleFavorite}
         openModal={openModal}
+        closeModal={closeModal}
       />
       {/* Render the modal if isModalOpen is true */}
-      {isModalOpen && <PhotoDetailsModal />}
+      {isModalOpen && <PhotoDetailsModal 
+      closeModal={closeModal}
+      />}
     </div>
   );
 };

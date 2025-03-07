@@ -3,7 +3,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ photo, favorited, toggleFavorite, openModal }) => {
 
-  const isFavorited = favorited.includes(photo.id) // Check if the photo is favorited
+  const isFavorited = favorited.includes(photo.id) // Check if the photo is favorited1
 
   const handleClick = (e) => {
     e.stopPropagation(); // Prevent the modal from opening when clicking the favorite button
