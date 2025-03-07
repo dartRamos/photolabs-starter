@@ -28,7 +28,7 @@ const App = () => {
     setIsModalOpen(true);
   };
 
-  // Close the modal
+  // Close the modal & clear selected photo
   const closeModal = () => {
     setIsModalOpen(false)
     setSelecetedPhoto(null)
