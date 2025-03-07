@@ -1,7 +1,7 @@
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photo, favorited = [], toggleFavorite, openModal }) => {
+const PhotoListItem = ({ photo, favorited, toggleFavorite, openModal }) => {
 
   const isFavorited = favorited.includes(photo.id) // Check if the photo is favorited
 

@@ -1,11 +1,13 @@
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from '../components/PhotoList';
+import PhotoFavButton from '../components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ closeModal, photo }) => {
+const PhotoDetailsModal = ({ closeModal, photo, favorited, toggleFavorite }) => {
 
   // Access the similar_photos property
   const similarPhotos = Object.values(photo.similar_photos);
+  
 
   return (
     <div className="photo-details-modal">
@@ -15,9 +17,13 @@ const PhotoDetailsModal = ({ closeModal, photo }) => {
 
       {/* Selected photo section */}
       <div className="photo-details-modal__images">
+      <PhotoFavButton 
+          selected={favorited.includes(photo.id)} 
+          onClick={() => toggleFavorite(photo.id)} 
+        />
         <img
           className="photo-details-modal__image"
-          src={photo.urls.regular}
+          src={photo.urls.full}
           alt={`Selected Photo ${photo.id}`}
         />
         <div className="photo-details-modal__top-bar">
@@ -42,7 +48,9 @@ const PhotoDetailsModal = ({ closeModal, photo }) => {
       <div className="photo-details-modal__images">
         {/* Use PhotoList to display similar photos */}
         <PhotoList 
-        photos={similarPhotos}
+          photos={similarPhotos}
+          favorited={favorited}
+          toggleFavorite={toggleFavorite}
         />
       </div>
     </div>
