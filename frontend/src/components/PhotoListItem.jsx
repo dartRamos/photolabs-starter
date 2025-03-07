@@ -12,6 +12,7 @@ const PhotoListItem = ({ photo, favorited, toggleFavorite, openModal }) => {
 
   return (
     <div className="photo-list__item" onClick={() => openModal(photo)}> {/* Open modal with selected photo */}
+      <PhotoFavButton selected={isFavorited} onClick={handleClick}/>
       <img className="photo-list__image" src={photo.urls.regular} alt={`Photo ${photo.id}`} />
         
       <div className="photo-list__user-details">
@@ -25,8 +26,6 @@ const PhotoListItem = ({ photo, favorited, toggleFavorite, openModal }) => {
           <div className="photo-list__user-location">
             {photo.location.city}, {photo.location.country}
           </div>
-
-          <PhotoFavButton selected={isFavorited} onClick={handleClick}/>
       
       </div>
       

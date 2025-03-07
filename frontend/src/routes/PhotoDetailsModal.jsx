@@ -6,7 +6,7 @@ import PhotoFavButton from '../components/PhotoFavButton';
 const PhotoDetailsModal = ({ closeModal, photo, favorited, toggleFavorite }) => {
 
   // Access the similar_photos property
-  const similarPhotos = Object.values(photo.similar_photos);
+  const similarPhotos = photo.similar_photos ? Object.values(photo.similar_photos) : [];
   
 
   return (
