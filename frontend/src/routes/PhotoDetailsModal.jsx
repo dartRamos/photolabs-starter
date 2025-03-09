@@ -3,7 +3,7 @@ import closeSymbol from '../assets/closeSymbol.svg';
 import PhotoList from '../components/PhotoList';
 import PhotoFavButton from '../components/PhotoFavButton';
 
-const PhotoDetailsModal = ({ closeModal, photo, favorited, toggleFavorite }) => {
+const PhotoDetailsModal = ({ toggleModal, photo, favorited, toggleFavorite }) => {
 
   // Access the similar_photos property
   const similarPhotos = photo.similar_photos ? Object.values(photo.similar_photos) : [];
@@ -11,7 +11,7 @@ const PhotoDetailsModal = ({ closeModal, photo, favorited, toggleFavorite }) => 
 
   return (
     <div className="photo-details-modal">
-      <button className="photo-details-modal__close-button" onClick={closeModal}>
+      <button className="photo-details-modal__close-button" onClick={toggleModal}>
         <img src={closeSymbol} alt="close symbol" />
       </button>
 

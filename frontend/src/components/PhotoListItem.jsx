@@ -1,18 +1,26 @@
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photo, favorited, toggleFavorite, openModal }) => {
+const PhotoListItem = ({ photo, favorited, toggleFavorite, toggleModal, setSelectedPhoto }) => {
 
   const isFavorited = favorited.includes(photo.id) // Check if the photo is favorited
 
-  const handleClick = (e) => {
+  const handleFavoriteClick = (e) => {
     e.stopPropagation(); // Prevent the modal from opening when clicking the favorite button
     toggleFavorite(photo.id);
   }
 
+  const handlePhotoClick = () => {
+    setSelectedPhoto(photo);
+    toggleModal();
+;  }
+
   return (
-    <div className="photo-list__item" onClick={() => openModal(photo)}> {/* Open modal with selected photo */}
-      <PhotoFavButton selected={isFavorited} onClick={handleClick}/>
+    <div className="photo-list__item" onClick={handlePhotoClick}> {/* Open modal with selected photo */}
+      <PhotoFavButton 
+      key={photo.id}
+      selected={isFavorited} 
+      onClick={handleFavoriteClick}/>
       <img className="photo-list__image" src={photo.urls.regular} alt={`Photo ${photo.id}`} />
         
       <div className="photo-list__user-details">
