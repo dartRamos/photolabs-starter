@@ -1,8 +1,6 @@
 import HomeRoute from './routes/HomeRoute';
 import PhotoDetailsModal from './routes/PhotoDetailsModal';
 import './App.scss';
-import photos from './mocks/photos';
-import topics from './mocks/topics';
 import useApplicationData from './hooks/useApplicationData';
 
 const App = () => {
@@ -10,13 +8,13 @@ const App = () => {
   // Use the useApplicationData hook to get state and actions
   const { state, toggleFavorite, toggleModal, setSelectedPhoto } = useApplicationData();
 
-  const { isModalOpen, favorited, selectedPhoto } = state;
+  const { isModalOpen, favorited, selectedPhoto, photoData, topicData } = state;
 
   return (
     <div className="App">
       <HomeRoute 
-        photos={photos}
-        topics={topics}
+        photos={photoData}
+        topics={topicData}
         favorited={favorited}
         toggleFavorite={toggleFavorite}
         isModalOpen={isModalOpen}

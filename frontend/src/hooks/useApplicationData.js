@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 
 // Action types
 export const ACTIONS = {
@@ -29,6 +29,12 @@ function reducer(state, action) {
     case ACTIONS.DISPLAY_PHOTO_DETAILS:
       return {...state, isModalOpen: !state.isModalOpen};
 
+    case ACTIONS.SET_PHOTO_DATA:
+      return {...state, photoData: action.photoData};
+
+    case ACTIONS.SET_TOPIC_DATA:
+      return {...state, topicData: action.topicData}
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -45,9 +51,32 @@ const useApplicationData = () => {
     {
       favorited: [],
       isModalOpen: false,
-      selectedPhoto: null
+      selectedPhoto: null,
+      photoData: [],
+      topicData: []
     }
   )
+
+  useEffect(() => {
+
+    // Fetch photo data from backend server
+    fetch('http://localhost:8001/api/photos')
+    .then(res => res.json())
+    .then(data => dispatch({
+      type: ACTIONS.SET_PHOTO_DATA,
+      photoData: data
+    }))
+
+    // Fetch topic data from backend server
+    fetch('http://localhost:8001/api/topics')
+    .then(res => res.json())
+    .then(data => dispatch({
+      type: ACTIONS.SET_TOPIC_DATA,
+      topicData: data
+    }))
+  }, [])
+
+  
 
   // Function to add/remove photo from favorites
   const toggleFavorite = (photoId) => {
