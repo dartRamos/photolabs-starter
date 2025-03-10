@@ -6,7 +6,7 @@ import useApplicationData from './hooks/useApplicationData';
 const App = () => {
 
   // Use the useApplicationData hook to get state and actions
-  const { state, toggleFavorite, toggleModal, setSelectedPhoto } = useApplicationData();
+  const { state, toggleFavorite, toggleModal, setSelectedPhoto, photoDataByTopic } = useApplicationData();
 
   const { isModalOpen, favorited, selectedPhoto, photoData, topicData } = state;
 
@@ -20,6 +20,7 @@ const App = () => {
         isModalOpen={isModalOpen}
         toggleModal={toggleModal}
         setSelectedPhoto={setSelectedPhoto}
+        photoDataByTopic={photoDataByTopic}
       />
       {/* Render the modal if isModalOpen is true */}
       {isModalOpen && selectedPhoto && (

@@ -1,15 +1,14 @@
 import "../styles/TopicListItem.scss";
 
-const sampleDataForTopicListItem = {
-  id: 1,
-  slug: "topic-1",
-  label: "Nature",
-};
+const TopicListItem = ({ topic, photoDataByTopic}) => {
 
-const TopicListItem = (props) => {
+  const handleClick = () => {
+    photoDataByTopic(topic.id);
+  }
+
   return (
     <div className="topic-list__item">
-      <span>{props.topic.title}</span>
+      <span onClick={handleClick}>{topic.title}</span>
     </div>
   );
 };
