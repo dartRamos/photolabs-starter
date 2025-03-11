@@ -107,6 +107,7 @@ const useApplicationData = () => {
     })
   };
 
+  // Function to fetch photo data by topic
   const photoDataByTopic = (topicId) => {
     fetch(`http://localhost:8001/api/topics/${topicId}/photos`)
     .then(res => res.json())
@@ -116,7 +117,7 @@ const useApplicationData = () => {
     }))
   }
 
-
+  
   return {
     state,
     toggleFavorite,
