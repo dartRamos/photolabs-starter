@@ -2,11 +2,15 @@ import FavIcon from './FavIcon';
 
 import '../styles/FavBadge.scss';
 
-const FavBadge = ({ isFavPhotoExist, favorited }) => {
+const FavBadge = ({ isFavPhotoExist, toggleFavoritesModal, isFavoritesOpen  }) => {
 
   return (
-    <div className='fav-badge'>
-      <FavIcon displayAlert={!!isFavPhotoExist} favorited={favorited}/>
+    <div className='fav-badge' onClick={toggleFavoritesModal}>
+      <FavIcon 
+      displayAlert={!!isFavPhotoExist} 
+      toggleFavoritesModal={toggleFavoritesModal}
+      isFavoritesOpen={isFavoritesOpen}
+      />
     </div>
   ) 
 };

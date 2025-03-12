@@ -8,7 +8,8 @@ export const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   SELECT_PHOTO: 'SELECT_PHOTO',
   DISPLAY_PHOTO_DETAILS: 'DISPLAY_PHOTO_DETAILS',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  DISPLAY_FAVORITES: 'DISPLAY_FAVORITES'
 }
 
 function reducer(state, action) {
@@ -39,6 +40,10 @@ function reducer(state, action) {
     case ACTIONS.GET_PHOTOS_BY_TOPICS:
       return {...state, photoData: action.photoDataByTopic}
 
+      // Update isFavoritesOpen state to open/close modal
+    case ACTIONS.DISPLAY_FAVORITES:
+      return {...state, isFavoritesOpen: !state.isFavoritesOpen}
+
     default:
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
@@ -55,11 +60,13 @@ const useApplicationData = () => {
     {
       favorited: [],
       isModalOpen: false,
+      isFavoritesOpen: false,
       selectedPhoto: null,
       photoData: [],
       topicData: []
     }
   )
+
 
   useEffect(() => {
 
@@ -89,14 +96,20 @@ const useApplicationData = () => {
       ? ACTIONS.FAV_PHOTO_REMOVED
       : ACTIONS.FAV_PHOTO_ADDED,
       photoId
-    });
-  }
+    })
+  };
 
   // Function to open/close modal
   const toggleModal = () => {
     dispatch({
       type: ACTIONS.DISPLAY_PHOTO_DETAILS
     })
+  };
+
+  const toggleFavoritesModal = () => {
+    dispatch({
+      type: ACTIONS.DISPLAY_FAVORITES,
+    });
   };
 
   // Function to set photo when clicked
@@ -115,13 +128,14 @@ const useApplicationData = () => {
       type: ACTIONS.GET_PHOTOS_BY_TOPICS,
       photoDataByTopic: data
     }))
-  }
+  };
 
   
   return {
     state,
     toggleFavorite,
     toggleModal,
+    toggleFavoritesModal,
     setSelectedPhoto,
     photoDataByTopic
   };

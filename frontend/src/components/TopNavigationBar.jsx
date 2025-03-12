@@ -2,7 +2,7 @@ import '../styles/TopNavigationBar.scss';
 import FavBadge from './FavBadge';
 import TopicList from './TopicList';
 
-const TopNavigation = ({ topics, favorited, photoDataByTopic }) => {
+const TopNavigation = ({ topics, favorited, photoDataByTopic, toggleFavoritesModal, isFavoritesOpen  }) => {
 
   const isFavPhotoExist = favorited.length > 0; // Check if there are favorited photos
 
@@ -16,6 +16,8 @@ const TopNavigation = ({ topics, favorited, photoDataByTopic }) => {
       <FavBadge 
       isFavPhotoExist={isFavPhotoExist} 
       favorited={favorited}
+      toggleFavoritesModal={toggleFavoritesModal}
+      isFavoritesOpen={isFavoritesOpen}
       />
     </div>
   );

@@ -18,7 +18,6 @@ const PhotoListItem = ({ photo, favorited, toggleFavorite, toggleModal, setSelec
   return (
     <div className="photo-list__item" onClick={handlePhotoClick}> {/* Open modal with selected photo */}
       <PhotoFavButton 
-      key={photo.id}
       selected={isFavorited} 
       onClick={handleFavoriteClick}/>
       <img className="photo-list__image" src={photo.urls.regular} alt={`Photo ${photo.id}`} />
